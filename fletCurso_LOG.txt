@@ -1,0 +1,61 @@
+.LOG
+
+Curso completo Espinoza: https://youtu.be/7EhjlAz4vvs?si=qExa64lqnghuN18R
+
+
+python -m venv venv
+.\venv\Scripts\activate
+pip install flet
+
+
+Estructura basica en FLET
+
+def main(page: ft.Page):
+    page.bgcolor = ft.Colors.BLUE_50
+    page.title   = "Listado de Cards"
+    page.scroll  = ft.ScrollMode.AUTO
+
+
+ft.app(target=main)
+
+
+
+Oh MY POSH - Setup
+https://youtu.be/6SGIFVJ5Izs?si=UtHUh9ykecD2sCqX
+
+En un terminal con Admin (win cmd)
++ Dar click en Settings
+  + Startup/Default profile -> >_PowerShell
+  + Startup/Default terminal app -> >_Windows Terminal
+  SAVE
+			    
++ winget install JanDeDobbeleer.OhMyPosh -s winget
+
++ oh-my-posh font install
+  + Seleccionar: FiraCode
+
++ themes: ( con los prompts mas cortos posibles)
+  + x hotstick.minimal
+  + x cinnamon
+  + x jblab_2021
+  + ok mt
+  + x nu4a
+  + x tonybaloney
+  + ok marcduiker
+
+Para cambiar font de la terminal en VSC
++ Bajar e instalar fuentes:  https://www.nerdfonts.com/font-downloads
+  (Instalacion masiva en windows: seleccionar todas las .otf, boton derecho: instalar)
+	Fira Code Nerd Font  
+	Hack Nerd Font
+	Meslo LG M Nerd Font
+
++ file/preference/settings
+buscar: terminal.integrated.fontFamily
+pegar: FiraCode Nerd Font Mono (este nombre se ve en cda .otf - boton derecho - vista previa)
+
+
+
+
+
+
