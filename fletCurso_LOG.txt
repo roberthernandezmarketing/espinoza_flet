@@ -18,6 +18,22 @@ def main(page: ft.Page):
 
 ft.app(target=main)
 
+-------------------------------
+.gitignore
+venv/
+storage/
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+.vscode/
+*.sqlite3
+db.sqlite3
+*.log
+.env
+.flaskenv
+
+-------------------------------
 
 
 Oh MY POSH - Setup
@@ -54,8 +70,14 @@ Para cambiar font de la terminal en VSC
 buscar: terminal.integrated.fontFamily
 pegar: FiraCode Nerd Font Mono (este nombre se ve en cda .otf - boton derecho - vista previa)
 
+buscar: terminal.integrated.fontsize
+colocar 14 o 16, segun tu gusto...
+
++
 
 
 
 
 
+
+3:21 PM 6/2/2025

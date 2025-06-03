@@ -4,7 +4,7 @@ def main(page: ft.Page):
     page.bgcolor    = ft.Colors.BLUE_50
     page.title      = "Notas Adhesivas"
     page.padding    = 20
-    page.theme_mode = "light"
+    page.theme_mode = ft.ThemeMode.LIGHT
 
     def add_note(e):
        new_note = create_note("New note")
@@ -17,30 +17,35 @@ def main(page: ft.Page):
 
     def create_note(text):
         note_content = ft.TextField(
-          value=text, 
-          multiline=True,
-          bgcolor=ft.Colors.BLUE_GREY_50)
+          value     = text, 
+          multiline = True,
+          bgcolor   = ft.Colors.BLUE_GREY_50
+        )
         
-        note = ft.Container (
-          content=ft.Column(
-            [note_content, ft.IconButton(icon=ft.Icons.DELETE,
-                                         on_click=lambda _: delete_note(note))]),
-
+        note = ft.Container(
+          content=ft.Column
+          (
+            [
+              note_content, 
+              ft.IconButton(icon=ft.Icons.DELETE, on_click=lambda _: delete_note(note))
+            ]
+          ),
           width=200,
           height=200,
           bgcolor=ft.Colors.AMBER_400,  # gold color
           border_radius=10,
           padding=10
         )
+        
         return note
     
     grid = ft.GridView(
-      expand=True,          # Fill all container
-      max_extent=220,       # Max width size of Grid
-      child_aspect_ratio=1, # width = heigh
-      horizontal=False,     # orientation by default is False
-      spacing=20,           # if horizontal = False -> under
-      run_spacing=20,       # if horizontal = False -> lateral
+      expand             = True,   # Fill all container
+      max_extent         = 220,    # Max width size of Grid
+      child_aspect_ratio = 1,      # width = heigh
+      horizontal         = False,  # orientation by default is False
+      spacing            = 20,     # if horizontal = False -> spacing is under
+      run_spacing        = 20,     # if horizontal = False -> spacing is lateral
     )
 
     notes = [
@@ -58,13 +63,17 @@ def main(page: ft.Page):
 
     page.add(
        
-      ft.Row([
+      ft.Row
+      (
+        [
 
-        ft.Text(value="Mis notas Adhesivas", size=24, weight="bold", color=ft.Colors.BLACK),
+          ft.Text(value="Mis notas Adhesivas", size=24, weight="bold", color=ft.Colors.BLACK),
 
-        ft.IconButton(icon=ft.Icons.ADD, on_click=add_note, icon_color=ft.Colors.BLACK)
+          ft.IconButton(icon=ft.Icons.ADD, on_click=add_note, icon_color=ft.Colors.BLACK)
 
-      ], alignment=ft.MainAxisAlignment.SPACE_BETWEEN), 
+        ], 
+        alignment=ft.MainAxisAlignment.SPACE_BETWEEN
+      ), 
 
       grid
              
