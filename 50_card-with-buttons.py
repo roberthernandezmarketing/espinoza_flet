@@ -4,8 +4,12 @@ def main(page: ft.Page):
     page.title = "Card Example"
     page.theme_mode = ft.ThemeMode.LIGHT
 
+    def add_note(e):
+        pass
+
     page.add(
 
+        # Main container 
         ft.Container(
             expand=True,
             alignment=ft.alignment.center,
@@ -15,6 +19,7 @@ def main(page: ft.Page):
                 shadow_color=ft.Colors.ON_SURFACE_VARIANT,
                 elevation=10,
                 color=ft.Colors.RED_500,
+                # ??? redondes de los bordes?
                 # shape=8,
               
                 content=ft.Container(
@@ -45,6 +50,7 @@ def main(page: ft.Page):
 
                                 controls=
                                 [
+                                    # ???tamano de los botones, hacerlos iguales los dos
                                     ft.ElevatedButton(
                                         "Buy tickets",
                                         style=ft.ButtonStyle(color=ft.Colors.GREY_800, padding=10)
@@ -54,6 +60,14 @@ def main(page: ft.Page):
                                         "Listen",
                                         style=ft.ButtonStyle(color=ft.Colors.GREY_200, 
                                                              padding=10, bgcolor=ft.Colors.GREY_500)
+                                    ),
+
+                                    # ??? formato del icon boton
+                                    ft.IconButton(
+                                        icon=ft.Icons.ADD, on_click=add_note, 
+                                        icon_color=ft.Colors.BLACK, bgcolor=ft.Colors.GREY_100
+                                        # style=ft.ButtonStyle(color=ft.Colors.GREY_200, 
+                                                            #  padding=10, bgcolor=ft.Colors.PINK_500)
                                     ),
                                 ],
                             ),

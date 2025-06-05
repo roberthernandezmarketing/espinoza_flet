@@ -42,9 +42,9 @@ def main(page: ft.Page):
     grid = ft.GridView(
       expand             = True,   # Fill all container
       max_extent         = 220,    # Max width size of Grid
-      child_aspect_ratio = 1,      # width = heigh
+      child_aspect_ratio = 1,      # width = height
       horizontal         = False,  # orientation by default is False
-      spacing            = 20,     # if horizontal = False -> spacing is under
+      spacing            = 20,     # if horizontal = False -> spacing is vertical
       run_spacing        = 20,     # if horizontal = False -> spacing is lateral
     )
 
@@ -69,10 +69,16 @@ def main(page: ft.Page):
 
           ft.Text(value="Mis notas Adhesivas", size=24, weight="bold", color=ft.Colors.BLACK),
 
-          ft.IconButton(icon=ft.Icons.ADD, on_click=add_note, icon_color=ft.Colors.BLACK)
+          ft.IconButton(icon=ft.Icons.ADD, 
+                        icon_size=24,
+                        icon_color=ft.Colors.BLACK, 
+                        bgcolor=ft.Colors.AMBER_400, 
+                        on_click=add_note, 
+                        )
 
         ], 
-        alignment=ft.MainAxisAlignment.SPACE_BETWEEN
+        # alignment=ft.MainAxisAlignment.SPACE_BETWEEN
+        alignment=ft.MainAxisAlignment.START
       ), 
 
       grid
