@@ -9,51 +9,57 @@ def main(page: ft.Page):
         ft.Container(
             expand=True,
             alignment=ft.alignment.center,
-            bgcolor=ft.Colors.BLUE_GREY_400,
+            bgcolor=ft.Colors.BLUE_GREY_800,
 
             content=ft.Card(
+                shadow_color=ft.Colors.ON_SURFACE_VARIANT,
+                elevation=10,
+                color=ft.Colors.RED_500,
+                # shape=8,
               
                 content=ft.Container(
                     width =400,
-                    height=180,  
+                    height=200,  
                     padding=0,
                     alignment=ft.alignment.center, 
+                    # bgcolor=ft.Colors.BLUE_700,
+                    # border_radius=30,
 
                     content=ft.Column(
+                        alignment=ft.MainAxisAlignment.CENTER,
+                        spacing=30,
 
                         controls=[
                           
                             ft.ListTile(
+                                bgcolor=ft.Colors.RED_700,
+                                text_color=ft.Colors.WHITE,
+                                
                                 leading=ft.Icon(ft.Icons.ALBUM, color=ft.Colors.WHITE),
                                 title=ft.Text("The Enchanted Nightingale"),
                                 subtitle=ft.Text("Music by Julie Gable. Lyrics by Sidney Stein."),
-                                # bgcolor=ft.Colors.GREY_50,
-                                text_color=ft.Colors.WHITE,
                             ),
 
                             ft.Row(
+                                alignment=ft.MainAxisAlignment.CENTER,
+
                                 controls=
                                 [
                                     ft.ElevatedButton(
                                         "Buy tickets",
-                                        style=ft.ButtonStyle(color=ft.Colors.GREY_800)
+                                        style=ft.ButtonStyle(color=ft.Colors.GREY_800, padding=10)
                                     ),
                                     
                                     ft.TextButton(
                                         "Listen",
-                                        style=ft.ButtonStyle(color=ft.Colors.GREY_100)
+                                        style=ft.ButtonStyle(color=ft.Colors.GREY_200, 
+                                                             padding=10, bgcolor=ft.Colors.GREY_500)
                                     ),
                                 ],
-                                alignment=ft.MainAxisAlignment.CENTER,
                             ),
                         ],
-                        alignment=ft.MainAxisAlignment.CENTER,
-                        spacing=10,
                     )
                 ),
-                shadow_color=ft.Colors.ON_SURFACE_VARIANT,
-                elevation=10,
-                color=ft.Colors.RED_500,
             )
         )
     )
