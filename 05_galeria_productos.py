@@ -23,12 +23,10 @@ def main(page: ft.Page):
 
         try:
             with open(image_path, "rb") as image_file:
-                # ¡La corrección clave está aquí!
-                # Lee los bytes binarios y codifícalos directamente a una cadena Base64.
                 image_base64_string = base64.b64encode(image_file.read()).decode("utf-8")
         except FileNotFoundError:
             print(f"Warning: image {image} not found in {image_path}")
-            image_base64_string = None # Aseguramos que sigue siendo None si no se encuentra
+            image_base64_string = None 
         except Exception as e:
             print(f"Error reading or encoding image {image}: {e}")
             image_base64_string = None
@@ -44,7 +42,6 @@ def main(page: ft.Page):
 
             content=ft.Column(
                 controls=[
-                    # Usamos image_base64_string directamente en src_base64
                     ft.Image(
                         src_base64=image_base64_string, 
                         width=150,
