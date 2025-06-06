@@ -46,16 +46,16 @@ def main(page: ft.Page):
                 controls=[
                     # Usamos image_base64_string directamente en src_base64
                     ft.Image(
-                        src_base64=image_base64_string, # Aquí va la cadena Base64
+                        src_base64=image_base64_string, 
                         width=150,
                         height=150,
                         fit=ft.ImageFit.CONTAIN,
-                        error_content=ft.Text("Image load error") # Mensaje más descriptivo
+                        error_content=ft.Text("Image load error") 
                     )
-                    if image_base64_string else ft.Text("Image not found"), # Mostrar texto si no hay imagen
+                    if image_base64_string else ft.Text("Image not found"), 
 
                     ft.Text(name, size=16, weight=ft.FontWeight.BOLD),
-                    ft.Text(value="ajsdh adsjAH SDSD sjfhs sdfjhsd sdjdfhs sdjfhsdfs dfsjhfs fsdjh fs", size=12),
+                    # ft.Text(value="ajsdh adsjAH SDSD sjfhs sdfjhsd sdjdfhs sdjfhsdfs dfsjhfs fsdjh fs", size=12),
                     ft.Text(value=f"${price}", size=14),
                     ft.ElevatedButton(text="Add to cart", color=ft.Colors.WHITE),
                 ]
