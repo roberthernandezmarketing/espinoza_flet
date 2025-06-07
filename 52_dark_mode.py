@@ -10,22 +10,9 @@ def main(page: ft.Page):
     page.window_maximized = True
     page.padding = 20
 
-    # Cambia dinámicamente los colores según el modo
-    def update_theme():
-        is_light = page.theme_mode == ft.ThemeMode.LIGHT
-        page.bgcolor = spk_colors.spk_bg_light if is_light else spk_colors.spk_bg_dark
-        title_text.color = spk_colors.spk_bg_dark if is_light else spk_colors.spk_white
-        title_bar.bgcolor = spk_colors.spk_bg_light if is_light else spk_colors.spk_bg_dark
-        theme_switch.label = "Modo Claro" if is_light else "Modo Oscuro"
-        for text in lorem_texts:
-            text.color = spk_colors.spk_bg_dark if is_light else spk_colors.spk_white
-        page.update()
+    is_dark = True  # Modo oscuro por defecto
 
-    def toggle_theme(e):
-        page.theme_mode = ft.ThemeMode.LIGHT if page.theme_mode == ft.ThemeMode.DARK else ft.ThemeMode.DARK
-        update_theme()
-
-    # ---------- Título + switch ----------
+    # ---------- Título principal ----------
     title_text = ft.Text(
         value="SparkCard App",
         size=24,
@@ -34,66 +21,89 @@ def main(page: ft.Page):
         font_family="Roboto"
     )
 
-    theme_switch = ft.Switch(
-        scale=.8,  # switch height
-        value=True,
-        label="Modo Oscuro",
-        on_change=toggle_theme,
-        active_color=spk_colors.spk_green,
-        inactive_thumb_color=spk_colors.spk_gray_light,
-        inactive_track_color=ft.Colors.GREY_600,
-        label_position=ft.LabelPosition.LEFT
+    # ---------- Icono de tema ----------
+    theme_icon = ft.IconButton(
+        icon=ft.Icons.NIGHTLIGHT_ROUND,  # luna
+        icon_color=spk_colors.spk_white,
+        tooltip="Cambiar tema",
+        on_click=lambda e: toggle_theme()
     )
 
+    # ---------- Texto de contenido ----------
+    lorem_text = ft.Text(
+        value=(
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n\n"
+            "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\n"
+            "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\n"
+            "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n\n"
+            "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\n"
+            "Donec sollicitudin molestie malesuada. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.\n\n"
+            "Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.\n\n"
+            "Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt."
+        ),
+        size=16,
+        color=spk_colors.spk_white,
+        expand=True
+    )
+
+    # ---------- Callback de cambio de tema ----------
+    def toggle_theme():
+        nonlocal is_dark
+        is_dark = not is_dark
+
+        if is_dark:
+            page.theme_mode = ft.ThemeMode.DARK
+            page.bgcolor = spk_colors.spk_bg_dark
+            title_bar.bgcolor = spk_colors.spk_bg_dark
+            title_text.color = spk_colors.spk_white
+            lorem_text.color = spk_colors.spk_white
+            theme_icon.icon = ft.Icons.NIGHTLIGHT_ROUND
+            theme_icon.icon_color = spk_colors.spk_white
+        else:
+            page.theme_mode = ft.ThemeMode.LIGHT
+            page.bgcolor = spk_colors.spk_bg_light
+            title_bar.bgcolor = spk_colors.spk_bg_light
+            title_text.color = spk_colors.spk_bg_dark
+            lorem_text.color = spk_colors.spk_bg_dark
+            theme_icon.icon = ft.Icons.WB_SUNNY
+            theme_icon.icon_color = spk_colors.spk_bg_dark
+
+        page.update()
+
+    # ---------- Barra superior ----------
     title_bar = ft.Container(
         padding=10,
         bgcolor=spk_colors.spk_bg_dark,
         content=ft.Row(
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
             vertical_alignment=ft.CrossAxisAlignment.CENTER,
-            controls=[title_text, theme_switch]
+            controls=[
+                title_text,
+                theme_icon
+            ]
         )
     )
 
-    # ---------- Texto largo con múltiples párrafos ----------
-    lorem_paragraph = (
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
-        "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    )
-
-    lorem_texts = [
-        ft.Text(value=lorem_paragraph, size=16, color=spk_colors.spk_white),
-        ft.Text(value=lorem_paragraph, size=16, color=spk_colors.spk_white),
-        ft.Text(value=lorem_paragraph, size=16, color=spk_colors.spk_white),
-        ft.Text(value=lorem_paragraph, size=16, color=spk_colors.spk_white),
-        ft.Text(value=lorem_paragraph, size=16, color=spk_colors.spk_white),
-    ]
-
+    # ---------- Columna izquierda ----------
     left_column = ft.Container(
         padding=10,
-        expand=True,
-        content=ft.Column(
-            scroll=ft.ScrollMode.AUTO,
-            expand=True,
-            spacing=15,
-            controls=lorem_texts
-        )
+        content=lorem_text,
+        expand=True
     )
 
-    # ---------- Imagen con ruta correcta ----------
+    # ---------- Columna derecha: imagen ----------
     image_card = ft.Card(
         elevation=8,
-        color=spk_colors.spk_blue,
+        color=spk_colors.spk_white,
         shadow_color=spk_colors.spk_gray_light,
         content=ft.Container(
             padding=10,
-            width=350,
-            height=350,
+            width=500,
+            height=500,
             alignment=ft.alignment.center,
             content=ft.Image(
-                src="assets/student.png",  # Ruta actualizada
-                width =500,
+                src="assets/student.png",
+                width=500,
                 height=500,
                 fit=ft.ImageFit.CONTAIN
             )
@@ -106,7 +116,7 @@ def main(page: ft.Page):
         expand=True
     )
 
-    # ---------- Layout principal de contenido ----------
+    # ---------- Layout principal ----------
     content_layout = ft.Row(
         controls=[left_column, right_column],
         alignment=ft.MainAxisAlignment.SPACE_AROUND,
@@ -114,8 +124,7 @@ def main(page: ft.Page):
         expand=True
     )
 
-    # ---------- Mostrar en la página ----------
+    # ---------- Añadir a la página ----------
     page.add(title_bar, content_layout)
-    update_theme()  # Inicializar los colores
 
 ft.app(target=main)
