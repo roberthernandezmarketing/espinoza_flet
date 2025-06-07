@@ -24,7 +24,7 @@ def main(page: ft.Page):
         horizontal_lines=ft.BorderSide(1, color=ft.Colors.BLUE_GREY_400),
 
         columns= [
-          ft.DataColumn(ft.Text(value="ID", color=ft.Colors.BLUE_200, width=10)),
+          ft.DataColumn(ft.Text(value="ID", color=ft.Colors.BLUE_200, width=20)),
           ft.DataColumn(ft.Text(value="Name", color=ft.Colors.BLUE_200, width=200)),
           ft.DataColumn(ft.Text(value="Age", color=ft.Colors.BLUE_200, width=50)),
         ],
